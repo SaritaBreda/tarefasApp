@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Alterar </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup] = "formAlterar">
+    <ion-item class="ion-text-center ion-button-light">
+      <ion-label>
+        Altere os dados
+      </ion-label>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input formControlName="nome" type="text" placeholder="Digite seu nome"></ion-input>
+      <ng-container *ngFor="let erro of mensagens_validacao.nome" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('nome').hasError(erro.tipo) && (formAlterar.get('nome').dirty || formAlterar.get('nome').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">CPF</ion-label>
+      <ion-input  [brmasker]="{person: true}" maxLength="14" formControlName="cpf" type="text" readonLy placeholder="Digite seu CPF"></ion-input>
+      <ng-container *ngFor="let erro of mensagens_validacao.cpf" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('cpf').hasError(erro.tipo) && (formAlterar.get('cpf').dirty || formAlterar.get('cpf').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Data de Nascimento</ion-label>
+      <ion-datetime formControlName="dataNascimento" displayFormat="DD/MM/YYYY" placeholder="Selecione" cancelText="Cancelar" doneText="OK"></ion-datetime>
+      <ng-container *ngFor="let erro of mensagens_validacao.dataNascimento" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('dataNascimento').hasError(erro.tipo) && (formAlterar.get('dataNascimento').dirty || formAlterar.get('dataNascimento').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Gênero</ion-label>
+      <ion-select formControlName="genero" placeholder="Selecione" cancelText="Cancelar">
+        <ion-select-option value="F">Feminino</ion-select-option>
+        <ion-select-option value="M">Masculino</ion-select-option>
+        <ion-select-option value="O">Outro</ion-select-option>
+      </ion-select>
+      <ng-container *ngFor="let erro of mensagens_validacao.genero" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('genero').hasError(erro.tipo) && (formAlterar.get('genero').dirty || formAlterar.get('genero').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Celular</ion-label>
+      <ion-input [brmasker]="{phone: true}" formControlName="celular" type="text" placeholder="Digite seu celular"></ion-input>
+      <ng-container *ngFor="let erro of mensagens_validacao.celular" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('celular').hasError(erro.tipo) && (formAlterar.get('celular').dirty || formAlterar.get('celular').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Digite seu e-mail" readonLy></ion-input>
+      <ng-container *ngFor="let erro of mensagens_validacao.email" >
+        <span class="msg-erro"
+        *ngIf="formAlterar.get('email').hasError(erro.tipo) && (formAlterar.get('email').dirty || formAlterar.get('email').touched)">
+        {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+    
+    <ion-button expand="full" (click)="salvar()">
+      SALVAR
+    </ion-button>
+  
+    <ion-button expand="full" fill="clear" routerLink="/configuracoes">
+      VOLTAR
+    </ion-button>
+  
+  </form>
+
+</ion-content>

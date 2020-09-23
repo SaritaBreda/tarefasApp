@@ -30,7 +30,7 @@ export class RegistroPage implements OnInit {
       {tipo: 'invalido', mensagem: 'CPF inválido!' }
     ],
 
-    data: [
+    dataNascimento: [
       {tipo: 'required', mensagem: 'O campo data de nascimento é obrigatório!' }
     ],
 
@@ -44,7 +44,8 @@ export class RegistroPage implements OnInit {
     ],
 
     email: [
-      {tipo: 'required', mensagem: 'O campo e-mail é obrigatório!' }
+      {tipo: 'required', mensagem: 'O campo e-mail é obrigatório!' },
+      {tipo: 'email', mensagem: 'E-mail inválido!' }
     ],
 
     senha: [
@@ -69,7 +70,7 @@ export class RegistroPage implements OnInit {
     this.formRegistro = formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(14), CpfValidator.cpfValido])],
-      data: ['', Validators.compose([Validators.required])],
+      dataNascimento: ['', Validators.compose([Validators.required])],
       genero: ['', Validators.compose([Validators.required])],
       celular: ['', Validators.compose([Validators.required, Validators.maxLength(16)])],
       email: ['', Validators.compose([Validators.required])],
